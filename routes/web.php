@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\VideoController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,12 +16,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'home'])->name('home');
 
 Auth::routes();
 
 Route::get('/home', [VideoController::class, 'index'])->name('home');
 
 Route::resource('/video', VideoController::class);
+
+Route::post('/beli-pulsa', [HomeController::class, 'beliPulsa'])->name('beli-pulsa');
